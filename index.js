@@ -85,10 +85,8 @@ function Car(model, milesPerGallon) {
   this.odometer = 0;
 }
 
-functin fill(gallons) {
+Car.prototype.fill = function(gallons) {
    this.tank = this.tank + gallons;
-   return this.tank;
-   
 }
 
 /*
@@ -98,18 +96,25 @@ functin fill(gallons) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+function Baby(name, age, favoriteToy) { 
+  Person.call(this, name, age),
+  this.favoriteToy = favoriteToy;
+}
 
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}.`
 }
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global context is when 'this' is the console object. This happens when it is in the global scope. 
+  2. Implciti binding: whenever the object left of the '.this' is being invoked.
+  3. New Binding: Referce to when you use a contructor functon, you create an object and then return it using that same constuctor function.
+  4.Explicit Binding: When you invoke apply or call, 'this ' is clearly defined. 
 */
 
 
